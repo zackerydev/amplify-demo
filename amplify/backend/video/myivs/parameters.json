@@ -1,0 +1,14 @@
+{
+    "GraphQLAPIId": {
+        "Fn::GetAtt": [
+            "apiVideoManagementApi",
+            "Outputs.GraphQLAPIIdOutput"
+        ]
+    },
+    "GraphQLEndpoint": {
+        "Fn::GetAtt": [
+            "apiVideoManagementApi",
+            "Outputs.GraphQLAPIEndpointOutput"
+        ]
+    }
+}

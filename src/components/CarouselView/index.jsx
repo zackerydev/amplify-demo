@@ -9,6 +9,21 @@ import {
 } from 'aws-amplify';
 
 /* Location 13 */
+const publicListChannel = /* GraphQL */ `
+    query ListChannels(
+        $nextToken: String
+    ) {
+        listChannels(nextToken: $nextToken) {
+        items {
+            id
+            title
+            description
+        }
+        nextToken
+        }
+    }
+`;
+
 
 class CarouselView extends Component {
   constructor(props) {
@@ -35,6 +50,19 @@ class CarouselView extends Component {
     let { width } = this.useSizeElement();
     const input = {};
     /* Location 14 */
+    try {
+      API.graphql(graphqlOperation(publicListChannel, input)).then((results) => {
+        let slideDistance = 0;
+        if (width > 300 && results.data.listChannels.items.length < 5) {
+          slideDistance = 300;
+          width = width - 300;
+        }
+        this.setState({ items: results.data.listChannels.items, width, slideDistance});
+      });
+    } catch(e){
+      console.log(e);
+    };
+
   }
 
   useSizeElement = () => {

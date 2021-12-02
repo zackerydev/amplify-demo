@@ -9,6 +9,17 @@ import NavBar from '../NavBar';
 import './index.css';
 
 /* Location 8 */
+const getPublicChannel = /* GraphQL */ `
+        query GetChannel($id: ID!) {
+            getChannel(id: $id) {
+                id
+                title
+                description
+                streamURL
+            }
+        }
+    `;
+
 
 class Channel extends Component {
 
@@ -26,6 +37,13 @@ class Channel extends Component {
         const input = {
             id: name,
         };
+        try {
+            API.graphql(graphqlOperation( getPublicChannel, input)).then((results) => {
+                this.setState({ item: results.data.getChannel } );
+            });
+        } catch(e){
+            console.log("Can't find channel");
+        };
         /* Location 9 */
     }
 
@@ -41,7 +59,15 @@ class Channel extends Component {
 
     drawVideoPlayer = () => {
         const { item } = this.state;
-        if (item.streamURL) {
+        if (item.streamURL) {   
+                return (
+                    <Video 
+                        src={item.streamURL}
+                        techOrder={['AmazonIVS']}
+                        controls
+                        />
+                    );
+
             /* Location 12 */
         } else {
             return (<div></div>);

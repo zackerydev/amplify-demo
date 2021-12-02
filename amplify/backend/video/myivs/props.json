@@ -1,0 +1,28 @@
+{
+    "shared": {
+        "resourceName": "myivs",
+        "bucket": "amplify-unicornsports-dev-204831-deployment"
+    },
+    "channel": {
+        "channelQuality": "STANDARD",
+        "channelLatency": "LOW",
+        "cvsEnable": "vms"
+    },
+    "status": {
+        "reportStatus": false
+    },
+    "parameters": {
+        "GraphQLAPIId": {
+            "Fn::GetAtt": [
+                "apiVideoManagementApi",
+                "Outputs.GraphQLAPIIdOutput"
+            ]
+        },
+        "GraphQLEndpoint": {
+            "Fn::GetAtt": [
+                "apiVideoManagementApi",
+                "Outputs.GraphQLAPIEndpointOutput"
+            ]
+        }
+    }
+}

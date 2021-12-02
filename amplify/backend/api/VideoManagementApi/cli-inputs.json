@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "VideoManagementApi",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/home/ec2-user/environment/unicornsports/amplify/backend/api/VideoManagementApi/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS"
+    }
+  }
+}
